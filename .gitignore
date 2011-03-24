@@ -1,0 +1,11 @@
+akePHP framework will be added as /cakephp so this entry just
+# prevents us from accidentally commiting the default /cake location
+/cake
+
+# Prevent sensitive data from ending up in your repo
+/app/config/database.php
+/app/config/core.php
+
+# prevent temporary files from ending up in our repo
+/app/tmp/cache/persistent/cake_*
+/app/tmp/logs/*.log
