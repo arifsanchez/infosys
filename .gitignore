@@ -1,6 +1,6 @@
-akePHP framework will be added as /cakephp so this entry just
+# CakePHP framework will be added as /core so this entry just
 # prevents us from accidentally commiting the default /cake location
-/cake
+/core
 
 # Prevent sensitive data from ending up in your repo
 /app/config/database.php
