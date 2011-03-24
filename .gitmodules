@@ -1,3 +1,6 @@
 [submodule "core"]
 	path = core
 	url = https://github.com/cakephp/cakephp.git
+[submodule "app/plugins/debug_kit"]
+	path = app/plugins/debug_kit
+	url = https://github.com/cakephp/debug_kit.git
