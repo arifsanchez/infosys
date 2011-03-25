@@ -2,10 +2,24 @@
 class UsersController extends AppController {
 
 	var $name = 'Users';
-
+	
+	function beforeFilter() {
+		$this->Auth->allow('index','view','add');
+		$this->Auth->userModel = 'User';
+	}
+	
+	function login(){
+			
+	}
+	
+	function logout(){
+			$this->redirect($this->Auth->logout());
+	}
+	
 	function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate());
+				
 	}
 
 	function view($id = null) {
@@ -17,6 +31,10 @@ class UsersController extends AppController {
 	}
 
 	function add() {
+		
+		$user = $this->Auth->user();
+		debug($user);
+		
 		if (!empty($this->data)) {
 			$this->User->create();
 			if ($this->User->save($this->data)) {
