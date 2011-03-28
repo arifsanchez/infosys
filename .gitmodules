@@ -7,3 +7,6 @@
 [submodule "app/plugins/migrations"]
 	path = app/plugins/migrations
 	url = https://github.com/CakeDC/migrations.git
+[submodule "app/plugins/wizard"]
+	path = app/plugins/wizard
+	url = https://github.com/jaredhoyt/cakephp-wizard.git
