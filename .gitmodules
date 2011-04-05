@@ -10,3 +10,6 @@
 [submodule "app/plugins/wizard"]
 	path = app/plugins/wizard
 	url = https://github.com/jaredhoyt/cakephp-wizard.git
+[submodule "app/plugins/spark_plug"]
+	path = app/plugins/spark_plug
+	url = git://github.com/jedt/spark_plug.git

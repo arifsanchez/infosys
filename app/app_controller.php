@@ -3,7 +3,8 @@
 		var $components = array(
 			'Auth',
 			'Session',
-			'DebugKit.Toolbar',
+			'DebugKit.Toolbar'
+		
 		);
 		
 	}
