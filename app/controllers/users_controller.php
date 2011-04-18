@@ -4,7 +4,7 @@ class UsersController extends AppController {
 	var $name = 'Users';
 	
 	function beforeFilter() {
-		$this->Auth->allow('index','view','add');
+		$this->Auth->allow('login');
 		$this->Auth->userModel = 'User';
 	}
 	
