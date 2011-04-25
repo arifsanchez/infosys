@@ -44,6 +44,9 @@ class UsersController extends AppController {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.', true));
 			}
 		}
+		
+		$groups = $this->User->Group->find('list');
+		$this->set(compact('groups'));
 	}
 
 	function edit($id = null) {
@@ -51,6 +54,7 @@ class UsersController extends AppController {
 			$this->Session->setFlash(__('Invalid user', true));
 			$this->redirect(array('action' => 'index'));
 		}
+		
 		if (!empty($this->data)) {
 			if ($this->User->save($this->data)) {
 				$this->Session->setFlash(__('The user has been saved', true));
@@ -59,9 +63,13 @@ class UsersController extends AppController {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.', true));
 			}
 		}
+		
 		if (empty($this->data)) {
 			$this->data = $this->User->read(null, $id);
 		}
+		
+		$groups = $this->User->Group->find('list');
+		$this->set(compact('groups'));
 	}
 
 	function delete($id = null) {
