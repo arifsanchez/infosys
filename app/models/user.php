@@ -2,10 +2,11 @@
 class User extends AppModel {
 	var $name = 'User';
 	
-	var $actAs = array('Acl' => 'requester');
-	
+	// Acl, jadikan Group as ARO	
+    var $actsAs = array('Acl'=>'requester');
+
 	// Acl memerlukan function parentNode
-	function parentNode(){
+	function parentNodex(){
 		// used while registration
 		if (!$this->id && empty($this->data)) {
 			return null;
@@ -22,6 +23,51 @@ class User extends AppModel {
 		}   
 		
     }
+	
+	function parentNode(){
+		$data = $this->read();
+		return 'Group:' . $data['User']['group_id'];
+	}
+	
+  	function afterSave($created) {
+
+  		if($created) {
+  		
+  		    // its a creation
+			$aro = new Aro();
+			$aro->updateAll( array( 'alias'=>  '"User:'.$this->id  .'"'), // the field
+                             array( 
+									'Aro.model'=>'User', // condition 1
+                                    'Aro.foreign_key'=> $this->id // condition 2 
+									)
+			                     );
+		}
+		else {
+		
+            // its an edit, we have to update the tree
+            $data = $this->read();
+            $parent_id = $data['User']['group_id'];
+
+            $aro = new Aro();
+            
+            $aro_record = $aro->findByAlias( 'User:'.$this->id );
+			$parent_record = $aro->findByAlias( 'Group:'.$parent_id );
+                          
+            if ( !empty( $aro_record ) ) {          
+                $parent_id = '0';
+                if ( !empty( $parent_record ) ) {
+                    $parent_id = $parent_record['Aro']['id']; // group_id
+                }
+                
+                // just changing parents
+                $this->Aro->save( array(
+                    'parent_id'		=> $parent_id, 
+    				'id'			=> $aro_record['Aro']['id'] 
+    			) );
+            }    			
+        }
+		return true;
+	}
 	
 	var $validate = array(
 		'group_id' => array(

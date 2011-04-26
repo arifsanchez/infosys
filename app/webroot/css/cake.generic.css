@@ -533,3 +533,86 @@ div.code-coverage-results span.result-ok {
 div.code-coverage-results span.result-good {
 	color: #0a0;
 }
+
+/**  Top Navigation  **/
+div.nav ul {
+	margin: 10px;
+	padding: 0;
+}
+div.nav li {
+	margin:0 0 0.5em 0;
+	list-style-type: none;
+	white-space: nowrap;
+	padding: 0;
+	display:inline;
+}
+div.nav ul li a {
+	font-weight:bold;
+	padding: 8px 16px;
+	background:#e6e49f;
+	;background: -webkit-gradient(linear, left top, left bottom, from(#f1f1d4), to(#e6e49f));
+	;background-image: -moz-linear-gradient(top, #f1f1d4, #e6e49f);
+	background: -webkit-gradient(linear, left top, left bottom, from(#a8ea9c), to(#62af56));
+	background-image: -moz-linear-gradient(top, #a8ea9c, #62af56);
+	color:#333;
+	border:1px solid #aaac62;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	border-radius:8px;
+	text-decoration:none;
+	;text-shadow: #fff 0px 1px 0px;
+	text-shadow: #8cee7c 0px 1px 0px;
+
+	#min-width: 0;
+}
+div.nav ul li a:hover {
+	text-decoration: underline;
+}
+div.nav .selected,
+div.nav ul li a:hover {
+	background: #f0f09a;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f7f7e1), to(#eeeca9));
+}
+
+/** Top Menu **/
+div#top_menu {
+	#margin-top:15px;
+	#margin-left: 48px;
+	width: 100%;
+	margin:15px auto auto 30px;
+}
+
+#right{
+	float: right;
+    padding-right: 10px;
+    text-align: right;
+    width: 600px;
+}
+
+#left{
+	float:left;
+	width:auto;
+	
+}
+
+.usercp{	
+	font-weight:bold;
+	padding: 8px 16px;
+	#padding-left:15px;
+	#padding-right:15px;
+	
+	background:#e6e49f;
+	;background: -webkit-gradient(linear, left top, left bottom, from(#f1f1d4), to(#e6e49f));
+	;background-image: -moz-linear-gradient(top, #f1f1d4, #e6e49f);
+	background: -webkit-gradient(linear, left top, left bottom, from(#a8ea9c), to(#62af56));
+	background-image: -moz-linear-gradient(top, #a8ea9c, #62af56);
+	color:#333;
+	border:1px solid #aaac62;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	border-radius:8px;
+	text-decoration:none;
+	;text-shadow: #fff 0px 1px 0px;
+	text-shadow: #8cee7c 0px 1px 0px;
+	margin-bottom : 12px;
+}

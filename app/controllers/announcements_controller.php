@@ -3,10 +3,6 @@ class AnnouncementsController extends AppController {
 
 	var $name = 'Announcements';
 	
-	function beforeFilter() {
-		#$this->Auth->allow('*');
-	}
-	
 	function index() {
 		$this->Announcement->recursive = 0;
 		$this->set('announcements', $this->paginate());

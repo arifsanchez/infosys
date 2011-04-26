@@ -17,13 +17,7 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><b><?php echo $this->Html->link(__('InfoSYS', true), array('controller' => 'pages', 'action' => 'home')); ?></b><?php echo " : ".$title_for_layout; ?>
-			<? if(!empty($username)) { ?>
-			<span style="font-size:12px;color:#000;">[
-				<? echo $html->link('Logout', array('controller' => 'users', 'action' => 'logout')); ?>
-			]</span>
-			<? } ?>	
-			</h1>
+			<?php echo $this->element('top_menu');?>
 		</div>
 		<div id="content">
 

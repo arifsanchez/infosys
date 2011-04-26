@@ -4,8 +4,25 @@ class UsersController extends AppController {
 	var $name = 'Users';
 	
 	function beforeFilter() {
-		$this->Auth->allow('login');
+		$this->Auth->allow('register','login');
 		$this->Auth->userModel = 'User';
+	}
+	
+	function register() {
+			if(!empty($this->data)){
+				if($this->User->validates()){
+					
+					//save this user sebagai super admin
+					$this->data['User']['group_id'] = 1;
+					$this->User->save($this->data);
+					
+					$data = $this->User->read();
+					
+					$this->Auth->login($data);
+					
+					$this->redirect('/');
+				}
+			}
 	}
 	
 	function login(){
