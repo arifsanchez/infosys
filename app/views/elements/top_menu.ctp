@@ -1,4 +1,4 @@
-<?php if( $access->isLoggedIn() ): // Menu untuk user ?>
+<?php if( $access->isLoggedIn() ): ?>
 <div class ='nav' >
 <ul id='right'>
 	<?php if( $access->check('Pages/display') ): ?>
@@ -27,7 +27,7 @@
 	<?php endif; ?>	
 </ul>	
 <span id='left' class='usercp'>
-<h1><?php echo $this->Html->link(__('InfoSYS', true), array('controller' => 'pages', 'action' => 'display')); ?></b><?php echo " : ".$title_for_layout; ?></h1>
+<h1><?php echo $this->Html->link(__('InfoSYS', true), array('controller' => 'pages', 'action' => 'display')); ?></b></h1>
 Logged in as <strong><?php echo $access->my('username');?></strong>
 <?php #echo $this->Html->link('My Account', '/users/my_account'); ?> |
 <?php echo $this->Html->link('Logout', '/users/logout'); ?>

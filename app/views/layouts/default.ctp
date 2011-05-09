@@ -3,7 +3,7 @@
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php __('InfoSYS:'); ?>
+		<?php __('InfoSys:'); ?>
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
@@ -14,27 +14,35 @@
 		echo $scripts_for_layout;
 	?>
 </head>
+
+
 <body>
 	<div id="container">
 		<div id="header">
 			<?php echo $this->element('top_menu');?>
 		</div>
-		<div id="content">
+		<?php 
+			if($this->params['controller'] == 'pages'){
+				echo "<div id=\"pages\">";
+			} else {
+				echo "<div id=\"content\">";
+			}
+			
+			echo $this->Session->flash();
+			echo $this->Session->flash('auth');
 
-			<?php echo $this->Session->flash(); ?>
-			<?php echo $this->Session->flash('auth'); ?>
-
-			<?php echo $content_for_layout; ?>
+			echo $content_for_layout; 
+		?>
 
 		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('bake_by_arif.gif', array('alt'=> __('Bake By Arif', true), 'border' => '0')),
-					'http://github.com/arifsanchez/infosys',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
-		</div>
+	</div>
+	
+	<div id="footer_logo">
+	<?php echo $this->Html->link(
+		$this->Html->image('bake_by_arif.gif', array('alt'=> __('Bake By Arif', true), 'border' => '0')),
+		'http://reachout.me/arif',
+		array('target' => '_blank', 'escape' => false)
+	);?>
 	</div>
 	<?php #echo $this->element('sql_dump'); ?>
 </body>

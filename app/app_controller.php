@@ -22,8 +22,8 @@
         	//Configure AuthComponent
 
 			$this->Auth->authorize = 'actions';
-			$this->Auth->allowedActions = array('display');
-			#$this->Auth->allowedActions = array('*');
+			#$this->Auth->allowedActions = array('display');
+			$this->Auth->allowedActions = array('*');
 			
 /*
         	$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
