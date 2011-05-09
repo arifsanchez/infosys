@@ -6,7 +6,7 @@ class SecuritiesController extends AppController {
 	
     function beforeFilter() {  
         // we need to temporarily allow access during the setup
-        $this->Auth->allow( 'index' ); 
+        #$this->Auth->allow( 'index' ); 
     }
 
     // Add and remove controller actions for Aco
