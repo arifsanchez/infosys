@@ -10,7 +10,7 @@
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('cake.generic');
-
+		echo $this->Html->script('jquery-1.6.min');
 		echo $scripts_for_layout;
 	?>
 </head>
@@ -19,7 +19,7 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<?php echo $this->element('top_menu');?>
+			<?php echo $this->element('admin/top_menu');?>
 		</div>
 		<?php 
 			if($this->params['controller'] == 'pages'){

@@ -85,7 +85,7 @@
  *
  * [Note Routing.admin is deprecated in 1.3.  Use Routing.prefixes instead]
  */
-	//Configure::write('Routing.prefixes', array('admin'));
+	Configure::write('Routing.prefixes', array('engineer','student','public'));
 
 /**
  * Turn off all caching application-wide.
@@ -164,7 +164,7 @@
  * characters."
  * @link http://php.net/session_name
  */
-	Configure::write('Session.cookie', 'CAKEPHP');
+	Configure::write('Session.cookie', 'ReachOut');
 
 /**
  * Session time out time (in seconds).
@@ -201,12 +201,12 @@
 /**
  * A random string used in security hashing methods.
  */
-	Configure::write('Security.salt', 'adDYhG93b0qyJfIxfs2guVoUubWwvniR2G0FgaC9mi');
+	Configure::write('Security.salt', 'HKJg89vob7glIYGOKlhjgOtglikOgilGFToliGYUOKLFl');
 
 /**
  * A random numeric string (digits only) used to encrypt/decrypt strings.
  */
-	Configure::write('Security.cipherSeed', '1276859309657453542496749683645');
+	Configure::write('Security.cipherSeed', '854825372540931649326492394');
 
 /**
  * Apply timestamps with the last modified time to static assets (js, css, images).

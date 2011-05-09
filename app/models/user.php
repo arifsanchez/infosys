@@ -128,6 +128,19 @@ class User extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
+		'UserAccessLog' => array(
+			'className' => 'UserAccessLog',
+			'foreignKey' => 'user_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'UserContact' => array(
 			'className' => 'UserContact',
 			'foreignKey' => 'user_id',

@@ -26,11 +26,34 @@ class UsersController extends AppController {
 	}
 	
 	function login(){
-			
+		if ($this->data) {
+			// Use the AuthComponent's login action
+			if ($this->Auth->login($this->data)) {
+				
+				$this->loadModel = 'UserAccessLog';
+				$this->data['UserAccessLog']['user_id'] =  $this->Auth->user('id');
+				$this->UserAccessLog->saveAll($this->data);
+				
+				// Retrieve user data
+				$whichUser = $this->User->findByUsername($this->data['User']['username']);	
+				debug($whichUser);die();
+				
+				// redirect base on user permission
+				if ($results['User']['status'] == 1) {
+					$this->redirect('/users/index');
+				}
+				// Cool, user is active, redirect post login
+				else {
+					$this->redirect('/dashboards/home');
+				}
+			}
+		}
 	}
 	
 	function logout(){
-			$this->redirect($this->Auth->logout());
+			if($this->redirect($this->Auth->logout())){
+					$this->redirect('/pages/home');
+			}
 	}
 	
 	function index() {

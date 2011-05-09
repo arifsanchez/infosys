@@ -2,7 +2,6 @@
 <?php foreach (array_chunk($actions, 3) as $row){ ?>
 <tr>
 <?php
-    #debug($current_action_group);
 	foreach ( $row as $current_action_group ) {
     echo '<td><table>';
         $action_name = $current_action_group[ 'name' ];
@@ -35,14 +34,7 @@
             
             if ( isset( $aco_list[ $action_value_1 ] ) ) {
 
-                echo '<td style="width:70px;font-size:10px">Delete ';
-                /*
-				echo $form->checkbox( 'Actions.SecurityAccess.'.$action_value_2,
-                                        array(  'label'=>false,
-                                                'div'=>false,
-                                                'value'=>'delete',
-                                                'checked'=>$checked_no ) );
-				*/ 								
+                echo '<td style="width:70px;font-size:10px">Delete ';				
 				echo $form->input( 'Actions.SecurityAccess.'. $action_value_2,
 										array(  'type' => 'checkbox',
 												'label' => false,
@@ -55,13 +47,6 @@
             else {
                 
                 echo '<td style="width:50px;font-size:10px">Add ';
-				/*
-				echo $form->checkbox( 'Actions.SecurityAccess.'.$action_value_2,
-                                        array(  'label'=>false,
-                                                'div'=>false,
-                                                'value'=>'include',
-                                                'checked'=>$checked_yes ) );
-				*/
 				echo $form->input( 'Actions.SecurityAccess.'. $action_value_2,
 										array(  'type' => 'checkbox',
 												'label' => false,
