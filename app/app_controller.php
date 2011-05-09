@@ -21,12 +21,9 @@
 
 		function beforeFilter() {
         	//Configure AuthComponent
-
 			$this->Auth->authorize = 'actions';
 			$this->Auth->allowedActions = array('*');
-
 		}
 
-		
 	}
 ?>
