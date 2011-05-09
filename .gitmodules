@@ -7,3 +7,6 @@
 [submodule "app/plugins/migrations"]
 	path = app/plugins/migrations
 	url = https://github.com/CakeDC/migrations.git
+[submodule "app/plugins/popup"]
+	path = app/plugins/popup
+	url = https://github.com/vitorpc/CakePHP-Popup-Plugin.git
