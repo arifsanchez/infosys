@@ -3,9 +3,11 @@
 /core
 
 # Prevent sensitive data from ending up in your repo
-#/app/config/database.php
-#/app/config/core.php
+/app/config/database.php
+/app/config/core.php
 
 # prevent temporary files from ending up in our repo
+/app/tmp/caceh/views/*
+/app/tmp/cache/models/*
 /app/tmp/cache/persistent/cake_*
 /app/tmp/logs/*.log
