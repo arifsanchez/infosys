@@ -15,9 +15,9 @@
 			'Javascript',
 			'Session',
 			'Time',
-			'Access'
+			'Access',
+			'Popup.Popup' => array('Jquery')
 		);
-
 
 		function beforeFilter() {
         	//Configure AuthComponent

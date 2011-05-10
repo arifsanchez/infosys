@@ -9,8 +9,10 @@
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic');
-		echo $this->Html->script('jquery-1.6.min');
+		echo $html->css('cake.generic');
+		echo $html->css('/popup/css/default_theme');
+		echo $html->script('jquery-1.6.min');
+		
 		echo $scripts_for_layout;
 	?>
 </head>
@@ -18,6 +20,8 @@
 
 <body>
 	<div id="container">
+		<div id="popups" style="z-index: 1000;"></div>
+		
 		<div id="header">
 			<?php echo $this->element('admin/top_menu');?>
 		</div>

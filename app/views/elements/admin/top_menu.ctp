@@ -39,7 +39,10 @@ Logged in as <strong><?php echo $access->my('username');?></strong>
 <ul id='right'>
 	<li><?php echo $this->Html->link('Home', '/'); ?></li>
 	<li><?php echo $this->Html->link('Register', '/users/register' ); ?></li>
-	<li><?php echo $this->Html->link('Login', '/users/login'); ?></li>
+	<li><?php 
+		#echo $this->Html->link('Login', '/users/login');
+		echo $popup->link('Login', array('element' => 'user_login')); 
+	?></li>
 </ul>	
 <span id='left' class='usercp'>
 InfoSYS Control Panel
