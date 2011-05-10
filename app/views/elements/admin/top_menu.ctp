@@ -42,7 +42,7 @@ Logged in as <strong><?php echo $access->my('username');?></strong>
 	<li><?php 
 		#echo $this->Html->link('Login', '/users/login');
 		echo $popup->link('Login', array('element' => 'user_login')); 
-	?></li>
+		?></li>
 </ul>	
 <span id='left' class='usercp'>
 InfoSYS Control Panel

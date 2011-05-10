@@ -10,6 +10,7 @@ class PagesController extends AppController{
 	}
 		
 	function home(){
+
 	}
 	
 }

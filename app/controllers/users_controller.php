@@ -4,7 +4,7 @@ class UsersController extends AppController {
 	var $name = 'Users';
 	
 	function beforeFilter() {
-		$this->Auth->allow('register','login');
+		$this->Auth->allow('register','login','user_login');
 		$this->Auth->userModel = 'User';
 	}
 	
@@ -25,35 +25,44 @@ class UsersController extends AppController {
 			}
 	}
 	
-	function login(){
-		if ($this->data) {
-			// Use the AuthComponent's login action
-			if ($this->Auth->login($this->data)) {
+	function user_login(){
+		if(!empty($this->data)){
+			
+			#debug($this->data);die();
+			
+			if($this->Auth->login($this->data)){
 				
-				$this->loadModel = 'UserAccessLog';
+				$this->loadModel('UserAccessLog');
 				$this->data['UserAccessLog']['user_id'] =  $this->Auth->user('id');
+				$this->UserAccessLog->create();
 				$this->UserAccessLog->saveAll($this->data);
 				
 				// Retrieve user data
 				$whichUser = $this->User->findByUsername($this->data['User']['username']);	
-				debug($whichUser);die();
+				#debug($whichUser);die();
 				
 				// redirect base on user permission
-				if ($results['User']['status'] == 1) {
+				if ($whichUser['Group']['id'] == 1) {
 					$this->redirect('/users/index');
 				}
 				// Cool, user is active, redirect post login
 				else {
-					$this->redirect('/dashboards/home');
+					$this->redirect('/announcements/index');
 				}
+			} else {
+				$this->Session->setFlash(__('Invalid Access . Please try again', true));
+				$this->redirect('/users/user_login');
 			}
 		}
 	}
 	
+	function login(){
+	}
+	
 	function logout(){
-			if($this->redirect($this->Auth->logout())){
-					$this->redirect('/pages/home');
-			}
+		if($this->Auth->logout()){
+				$this->redirect('/pages/home');
+		}
 	}
 	
 	function index() {
