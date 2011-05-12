@@ -1,4 +1,7 @@
 <?php
+
+App::import('Sanitize');
+
 class UsersController extends AppController {
 
 	var $name = 'Users';
@@ -10,72 +13,53 @@ class UsersController extends AppController {
 	}
 	
 	function register() {
-			if(!empty($this->data)){
-				if($this->User->validates()){
-					
-					//save this user sebagai super admin
-					$this->data['User']['group_id'] = 1;
-					$this->User->save($this->data);
-					
-					$data = $this->User->read();
-					
-					$this->Auth->login($data);
-					
-					$this->redirect('/');
+
+		if (!empty($this->data)) {
+			$clean = new Sanitize();
+			$clean->clean($this->data);
+			$this->User->set($this->data);
+			
+			if($this->User->validates()){
+				// Sanitize the data for all fields that required
+				$this->data['User']['username'] = $clean->paranoid($this->data['User']['username']);
+				$this->data['User']['group_id'] = 2; //save this user sebagai normal user
+				$this->User->save($this->data); 
+				
+				$data = $this->User->read();
+				
+				$this->Auth->login($data);
+				
+				$this->redirect('/');
 				}
-			}
+		}
+
+		$this->data['User']['password'] = ''; // reset the password field
 	}
 	
-/*
-	function user_login() {
-
-		if ($this->Auth->user()) {
-			if (!empty($this->data) && $this->data['User']['remember_me']) {
-				$cookie = array();
-				$cookie['username'] = $this->data['User']['username'];
-				$cookie['password'] = $this->data['User']['password'];
-				$this->Cookie->write('Auth.User', $cookie, true, '+2 weeks');
-				unset($this->data['User']['remember_me']);
-			}
-			$this->redirect($this->Auth->redirect());
-		}
-		if (empty($this->data)) {
-			$cookie = $this->Cookie->read('Auth.User');
-			if (!is_null($cookie)) {
-				if ($this->Auth->login($cookie)) {
-					//  Clear auth message, just in case we use it.
-					$this->Session->del('Message.auth');
-					$this->redirect($this->Auth->redirect());
-				} else { // Delete invalid Cookie
-					$this->Cookie->del('Auth.User');
-				}
-			}
-		}
-	}
-*/
-
-	
-
 	function user_login(){
 		if(!empty($this->data)){
 			
 			if($this->Auth->login($this->data)){
-				
-				$this->loadModel('UserAccessLog');
-				$this->data['UserAccessLog']['user_id'] =  $this->Auth->user('id');
-				$this->UserAccessLog->create();
-				$this->UserAccessLog->saveAll($this->data);
-				
+								
 				// Retrieve user data
 				$whichUser = $this->User->findByUsername($this->data['User']['username']);	
-				#debug($whichUser);die();
 				
 				// redirect base on user permission
 				if ($whichUser['Group']['id'] == 1) {
-					$this->redirect('/users/index');
+					$this->data['UserAccessLog']['user_id'] = $this->Auth->user('id');
+					$this->data['UserAccessLog']['referer'] = $_SERVER['REMOTE_ADDR'];
+					$this->User->UserAccessLog->create();
+					$this->User->UserAccessLog->save($this->data);
+					
+					$this->redirect('/user_profiles/index');
 				}
 				// Cool, user is active, redirect post login
 				else {
+					$this->data['UserAccessLog']['user_id'] = $this->Auth->user('id');
+					$this->data['UserAccessLog']['referer'] = $_SERVER['REMOTE_ADDR'];
+					$this->User->UserAccessLog->create();
+					$this->User->UserAccessLog->save($this->data);
+					
 					$this->redirect('/announcements/index');
 				}
 				
