@@ -10,7 +10,7 @@ class PagesController extends AppController{
 	}
 		
 	function home(){
-
+		#debug($this->Session);
 	}
 	
 }

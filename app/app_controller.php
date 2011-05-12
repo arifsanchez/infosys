@@ -3,6 +3,7 @@
 		var $components = array(
 			'Acl',
 			'Auth',
+			'Cookie',
 			'Session',
 			'DebugKit.Toolbar',
 			'Access'
@@ -23,8 +24,6 @@
         	//Configure AuthComponent
 			$this->Auth->authorize = 'actions';
 			$this->Auth->allowedActions = array('*');
-			$this->Auth->loginRedirect = array('controller' => 'users','action' => 'user_login'); 
-			$this->Auth->logoutRedirect = array('controller' => 'pages','action' => 'home'); 
 		}
 
 	}

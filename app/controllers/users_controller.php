@@ -6,6 +6,7 @@ class UsersController extends AppController {
 	function beforeFilter() {
 		$this->Auth->allow('register','login','user_login');
 		$this->Auth->userModel = 'User';
+		$this->Auth->autoRedirect = false;
 	}
 	
 	function register() {
@@ -25,10 +26,38 @@ class UsersController extends AppController {
 			}
 	}
 	
+/*
+	function user_login() {
+
+		if ($this->Auth->user()) {
+			if (!empty($this->data) && $this->data['User']['remember_me']) {
+				$cookie = array();
+				$cookie['username'] = $this->data['User']['username'];
+				$cookie['password'] = $this->data['User']['password'];
+				$this->Cookie->write('Auth.User', $cookie, true, '+2 weeks');
+				unset($this->data['User']['remember_me']);
+			}
+			$this->redirect($this->Auth->redirect());
+		}
+		if (empty($this->data)) {
+			$cookie = $this->Cookie->read('Auth.User');
+			if (!is_null($cookie)) {
+				if ($this->Auth->login($cookie)) {
+					//  Clear auth message, just in case we use it.
+					$this->Session->del('Message.auth');
+					$this->redirect($this->Auth->redirect());
+				} else { // Delete invalid Cookie
+					$this->Cookie->del('Auth.User');
+				}
+			}
+		}
+	}
+*/
+
+	
+
 	function user_login(){
 		if(!empty($this->data)){
-			
-			#debug($this->data);die();
 			
 			if($this->Auth->login($this->data)){
 				
@@ -49,12 +78,14 @@ class UsersController extends AppController {
 				else {
 					$this->redirect('/announcements/index');
 				}
+				
 			} else {
 				$this->Session->setFlash(__('Invalid Access . Please try again', true));
 				$this->redirect('/users/user_login');
 			}
 		}
 	}
+
 	
 	function login(){
 	}
